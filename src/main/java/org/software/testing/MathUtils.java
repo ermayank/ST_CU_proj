@@ -1,4 +1,4 @@
-package org.example;
+package org.software.testing;
 
 public class MathUtils {
     public int add(int a, int b){
