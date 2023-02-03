@@ -18,7 +18,7 @@ public class Main {
         do{
             System.out.print("Enter command : ");
             command = sc.nextLine();
-            char c = command.charAt(0);
+            char c = command.toLowerCase().charAt(0);
 
             switch (c) {
                 case 'i':
@@ -37,6 +37,12 @@ public class Main {
                     break;
                 case 'l':
                     r.turnLeft();
+                    break;
+                case 'p':
+                    r.displayMatrix();
+                    break;
+                default:
+                    System.out.println("Enter valid command");
                     break;
 
             }

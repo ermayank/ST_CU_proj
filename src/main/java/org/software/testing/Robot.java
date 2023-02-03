@@ -6,19 +6,14 @@ public class Robot {
 
     int floorSize = 10;
     int[] robotPosition = {0,0};
-
+    int size;
     String direction = "north";
     String pen = "down";
-
+    int[][] floor;
     //Method to Initialize
     public void initializeFloor(int size){
-        int[][] floor = new int[size][size];
-        for (int i = 0; i<size; i++){
-            for (int j = 0; j<size; j++){
-                System.out.print(floor[i][j]);
-            }
-            System.out.println();
-        }
+        this.size = size;
+        floor = new int[size][size];
     }
     //Method to Turn Right
     public int turnRight(){
@@ -114,5 +109,18 @@ public class Robot {
         //Modify the final position
         return 1;
     }
-
+    public void displayMatrix(){
+        for (int i = 0; i<size; i++){
+            System.out.print(String.format("%-5s%-5d","",size-i-1));
+            for (int j = 0; j<size; j++){
+                System.out.print(String.format("%-5s%-5d","",floor[i][j]));
+            }
+            System.out.println();
+        }
+        System.out.print(String.format("%-10s",""));
+        for(int i=0;i<size;i++){
+            System.out.print(String.format("%-5s%-5d","",i));
+        }
+        System.out.println();
+    }
 }
