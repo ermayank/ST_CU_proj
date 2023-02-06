@@ -7,15 +7,13 @@ public class Robot {
 
     int floorSize = 10;
     int[] robotPosition = {0,0};
-    int size;
     String direction = "north";
     String pen = "up";
     int[][] floor;
     //Method to Initialize
     public void initializeFloor(int size){
-        this.size = size;
         floorSize = size;
-        floor = new int[size][size];
+        floor = new int[floorSize][floorSize];
         direction = "north";
         pen = "up";
         robotPosition[0] = 0;
@@ -134,15 +132,22 @@ public class Robot {
         return 10;
     }
     public void displayMatrix(){
-        for (int i = 0; i<size; i++){
-            System.out.print(String.format("%-1s%-1d","",size-i-1));
-            for (int j = 0; j<size; j++){
-                System.out.print(String.format("%-1s%-1d","",floor[i][j]));
+        for (int i = floorSize-1; i>=0; i--){
+            System.out.print(String.format("%-1s%-1d","",i));
+            for (int j = 0; j<floorSize; j++){
+                if(floor[j][i] == 1)
+                {
+                    System.out.print(String.format("%-1s%-1s","","*"));
+                }
+                else
+                {
+                    System.out.print(String.format("%-1s%-1s",""," "));
+                }
             }
             System.out.println();
         }
         System.out.print(String.format("%-1s",""));
-        for(int i=0;i<size;i++){
+        for(int i=0;i<floorSize;i++){
             System.out.print(String.format("%-1s%-1d","",i));
         }
         System.out.println();
