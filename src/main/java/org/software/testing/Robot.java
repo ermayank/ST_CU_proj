@@ -7,15 +7,13 @@ public class Robot {
 
     int floorSize = 10;
     int[] robotPosition = {0,0};
-    int size;
     String direction = "north";
     String pen = "up";
     int[][] floor;
     //Method to Initialize
     public void initializeFloor(int size){
-        this.size = size;
         floorSize = size;
-        floor = new int[size][size];
+        floor = new int[floorSize][floorSize];
         direction = "north";
         pen = "up";
         robotPosition[0] = 0;
@@ -101,7 +99,7 @@ public class Robot {
             case "north":
                 robotPosition[1] =  ((floorSize - robotPosition[1]) - spaces - 1)>=0 ? robotPosition[1] + spaces: robotPosition[1];
                 if(pen == "down"){
-                    for (int i = pos1; i < robotPosition[1]; i++){
+                    for (int i = pos1; i <= robotPosition[1]; i++){
                         floor[robotPosition[0]][i] = 1;
                     };
                 }
@@ -109,7 +107,7 @@ public class Robot {
             case "south":
                 robotPosition[1] =  (robotPosition[1]- spaces - 1)>=0 ? robotPosition[1] - spaces : robotPosition[1];
                 if(pen == "down"){
-                    for (int i = pos1; i < robotPosition[1]; i--){
+                    for (int i = pos1; i <=robotPosition[1]; i--){
                         floor[robotPosition[0]][i] = 1;
                     };
                 }
@@ -117,7 +115,7 @@ public class Robot {
             case "east":
                 robotPosition[0] = (floorSize - robotPosition[0] - spaces -1 )>=0 ? robotPosition[0] + spaces: robotPosition[0];
                 if(pen == "down"){
-                    for (int i = pos0; i < robotPosition[0]; i++){
+                    for (int i = pos0; i <= robotPosition[0]; i++){
                         floor[i][robotPosition[1]] = 1;
                     };
                 }
@@ -125,7 +123,7 @@ public class Robot {
             case "west":
                 robotPosition[0] =  (robotPosition[0]- spaces - 1)>=0 ? robotPosition[0] - spaces : robotPosition[0];
                 if(pen == "down"){
-                    for (int i = pos0; i < robotPosition[0]; i--){
+                    for (int i = pos0; i <= robotPosition[0]; i--){
                         floor[i][robotPosition[1]] = 1;
                     };
                 }
@@ -134,15 +132,22 @@ public class Robot {
         return 10;
     }
     public void displayMatrix(){
-        for (int i = 0; i<size; i++){
-            System.out.print(String.format("%-1s%-1d","",size-i-1));
-            for (int j = 0; j<size; j++){
-                System.out.print(String.format("%-1s%-1d","",floor[i][j]));
+        for (int i = floorSize-1; i>=0; i--){
+            System.out.print(String.format("%-1s%-1d","",i));
+            for (int j = 0; j<floorSize; j++){
+                if(floor[j][i] == 1)
+                {
+                    System.out.print(String.format("%-1s%-1s","","*"));
+                }
+                else
+                {
+                    System.out.print(String.format("%-1s%-1s",""," "));
+                }
             }
             System.out.println();
         }
         System.out.print(String.format("%-1s",""));
-        for(int i=0;i<size;i++){
+        for(int i=0;i<floorSize;i++){
             System.out.print(String.format("%-1s%-1d","",i));
         }
         System.out.println();
