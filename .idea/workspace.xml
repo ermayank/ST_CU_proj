@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd5ca181-5537-43fd-995a-cdf8065d180d" name="Changes" comment="">
+    <list default="true" id="cd5ca181-5537-43fd-995a-cdf8065d180d" name="Changes" comment="Print matrix modified">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/software/testing/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/software/testing/Robot.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -175,6 +174,14 @@
       <workItem from="1675448852230" duration="95000" />
       <workItem from="1675536356960" duration="338000" />
     </task>
+    <task id="LOCAL-00001" summary="Print matrix modified">
+      <created>1675700522551</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1675700522551</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,6 +209,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Print matrix modified" />
+    <option name="LAST_COMMIT_MESSAGE" value="Print matrix modified" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ST_CU$MathUtilsTest.ic" NAME="MathUtilsTest Coverage Results" MODIFIED="1675097199104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

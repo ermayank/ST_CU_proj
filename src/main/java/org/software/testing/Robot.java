@@ -99,7 +99,7 @@ public class Robot {
             case "north":
                 robotPosition[1] =  ((floorSize - robotPosition[1]) - spaces - 1)>=0 ? robotPosition[1] + spaces: robotPosition[1];
                 if(pen == "down"){
-                    for (int i = pos1; i < robotPosition[1]; i++){
+                    for (int i = pos1; i <= robotPosition[1]; i++){
                         floor[robotPosition[0]][i] = 1;
                     };
                 }
@@ -107,7 +107,7 @@ public class Robot {
             case "south":
                 robotPosition[1] =  (robotPosition[1]- spaces - 1)>=0 ? robotPosition[1] - spaces : robotPosition[1];
                 if(pen == "down"){
-                    for (int i = pos1; i < robotPosition[1]; i--){
+                    for (int i = pos1; i <=robotPosition[1]; i--){
                         floor[robotPosition[0]][i] = 1;
                     };
                 }
@@ -115,7 +115,7 @@ public class Robot {
             case "east":
                 robotPosition[0] = (floorSize - robotPosition[0] - spaces -1 )>=0 ? robotPosition[0] + spaces: robotPosition[0];
                 if(pen == "down"){
-                    for (int i = pos0; i < robotPosition[0]; i++){
+                    for (int i = pos0; i <= robotPosition[0]; i++){
                         floor[i][robotPosition[1]] = 1;
                     };
                 }
@@ -123,7 +123,7 @@ public class Robot {
             case "west":
                 robotPosition[0] =  (robotPosition[0]- spaces - 1)>=0 ? robotPosition[0] - spaces : robotPosition[0];
                 if(pen == "down"){
-                    for (int i = pos0; i < robotPosition[0]; i--){
+                    for (int i = pos0; i <= robotPosition[0]; i--){
                         floor[i][robotPosition[1]] = 1;
                     };
                 }
