@@ -74,24 +74,6 @@ public class Robot {
 
         return position + " - " + penStatus + " - " + face;
     }
-    public int moveForwardPenUp(int spaces){
-        //If pen was down --> Replace 1 in the path traced
-        switch (direction) {
-            case "north":
-                robotPosition[1] =  ((floorSize - robotPosition[1]) - spaces - 1)>=0 ? robotPosition[1] + spaces: robotPosition[1];
-                break;
-            case "south":
-                robotPosition[1] =  (robotPosition[1]- spaces - 1)>=0 ? robotPosition[1] - spaces : robotPosition[1];
-                break;
-            case "east":
-                robotPosition[0] = (floorSize - robotPosition[0] - spaces -1 )>=0 ? robotPosition[0] + spaces: robotPosition[0];
-                break;
-            case "west":
-                robotPosition[0] =  (robotPosition[0]- spaces - 1)>=0 ? robotPosition[0] - spaces : robotPosition[0];
-                break;
-        }
-        return 1;
-    }
     public int moveForward(int spaces){
         int pos1 = robotPosition[1];
         int pos0 = robotPosition[0];
