@@ -30,24 +30,23 @@ public class Robot {
             System.out.println("Size of array cannot be negative or zero");
             return false;
         }
-
     }
 
     //Method to Change Pen to Down
-    public int setPenDown(){
+    public String setPenDown(){
         pen = "down";
-        return 1;
+        return pen;
     };
     //Method to Change Pen to Up
-    public int setPenUp(){
+    public String setPenUp(){
         pen = "up";
-        return 1;
+        return pen;
     };
     //Method to Turn Right
-    public int turnRight(){
+    public String turnRight(){
         if(initialized==0){
             System.out.println("Please initialize the array first");
-            return 0;
+            return "0";
         }
         switch (direction) {
             case "north":
@@ -63,7 +62,7 @@ public class Robot {
                 direction = "north";
                 break;
         }
-        return 0;
+        return direction;
     };
     //Method to Turn Left
     public String turnLeft(){
@@ -90,8 +89,8 @@ public class Robot {
     //Method to display current position
     public String showCurrentPositionStatus(){
         if(initialized==0){
-            System.out.print("Please initialize the array first");
-            return "";
+//            System.out.print("");
+            return "Please initialize the program first";
         }
 
         String position = "Position: " + robotPosition[0] + ", " + robotPosition[1];
