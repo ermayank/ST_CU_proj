@@ -110,7 +110,6 @@ public class Robot {
         int pos0 = robotPosition[0];
         //Check the direction in which robot is facing
         //Then check if desired motion is not exceeding available space, then move, else display error message
-
         switch (direction) {
             case "north":
                 robotPosition[1] =  ((floorSize - robotPosition[1]) - spaces - 1)>=0 ? robotPosition[1] + spaces: robotPosition[1];
