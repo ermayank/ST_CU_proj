@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd5ca181-5537-43fd-995a-cdf8065d180d" name="Changes" comment="Print matrix modified">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/software/testing/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/software/testing/Robot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/software/testing/RobotTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/software/testing/RobotTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +70,7 @@
       <recent name="org.example" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.All in ST_CU">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.software.testing.Main" />
       <module name="ST_CU" />
@@ -149,8 +150,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.All in ST_CU" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.MathUtilsTest" />
         <item itemvalue="JUnit.MathUtilsTest.testAdd" />
         <item itemvalue="JUnit.MathUtilsTest.add" />
@@ -173,6 +174,7 @@
       <workItem from="1675208236426" duration="55000" />
       <workItem from="1675448852230" duration="95000" />
       <workItem from="1675536356960" duration="338000" />
+      <workItem from="1675885806078" duration="2096000" />
     </task>
     <task id="LOCAL-00001" summary="Print matrix modified">
       <created>1675700522551</created>
