@@ -110,9 +110,14 @@ public class Robot {
         int pos0 = robotPosition[0];
         //Check the direction in which robot is facing
         //Then check if desired motion is not exceeding available space, then move, else display error message
+
         switch (direction) {
             case "north":
                 robotPosition[1] =  ((floorSize - robotPosition[1]) - spaces - 1)>=0 ? robotPosition[1] + spaces: robotPosition[1];
+                if(pos1 == robotPosition[1])
+                {
+                    System.out.println("Robot motion for this command was not possible");
+                }
                 if(pen == "down"){
                     for (int i = pos1; i <= robotPosition[1]; i++){
                         floor[robotPosition[0]][i] = 1;
@@ -121,14 +126,22 @@ public class Robot {
                 break;
             case "south":
                 robotPosition[1] =  (robotPosition[1]- spaces - 1)>=0 ? robotPosition[1] - spaces : robotPosition[1];
+                if(pos1 == robotPosition[1])
+                {
+                    System.out.println("Robot motion for this command was not possible");
+                }
                 if(pen == "down"){
-                    for (int i = pos1; i <=robotPosition[1]; i--){
+                    for (int i = pos1; i >=robotPosition[1]; i--){
                         floor[robotPosition[0]][i] = 1;
                     }
                 }
                 break;
             case "east":
                 robotPosition[0] = (floorSize - robotPosition[0] - spaces -1 )>=0 ? robotPosition[0] + spaces: robotPosition[0];
+                if(pos0 == robotPosition[0])
+                {
+                    System.out.println("Robot motion for this command was not possible");
+                }
                 if(pen == "down"){
                     for (int i = pos0; i <= robotPosition[0]; i++){
                         floor[i][robotPosition[1]] = 1;
@@ -137,8 +150,12 @@ public class Robot {
                 break;
             case "west":
                 robotPosition[0] =  (robotPosition[0]- spaces - 1)>=0 ? robotPosition[0] - spaces : robotPosition[0];
+                if(pos0 == robotPosition[0])
+                {
+                    System.out.println("Robot motion for this command was not possible");
+                }
                 if(pen == "down"){
-                    for (int i = pos0; i <= robotPosition[0]; i--){
+                    for (int i = pos0; i >=robotPosition[0]; i--){
                         floor[i][robotPosition[1]] = 1;
                     };
                 }
@@ -174,7 +191,7 @@ public class Robot {
         //Print the indices for x-axis
         System.out.print(String.format("%-6s",""));
         for(int i=0;i<floorSize;i++){
-            System.out.print(String.format("%-3s%-3d","",i));
+            System.out.print(String.format("%-2s%-2d","",i));
         }
         System.out.println();
     }
