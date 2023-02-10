@@ -1,16 +1,9 @@
 package org.software.testing;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
-/*
-TODO
-- moveForward
-- displayMatrix
-
- */
 class RobotTest {
+
     Robot r = new Robot();
+
     @Test
     void initializeFloorNotNullOrZeroTest() {
         //This should check that all the necessary variables not java default after running function.
@@ -20,8 +13,6 @@ class RobotTest {
         String directionAfterInitialize = r.direction;
         int floorSizeAfterInitialize = r.floorSize;
         String penAfterInitialize = r.pen;
-        int[] robotPositionAfterInitialize = r.robotPosition;
-        int[][] floorAfterInitialize = r.floor;
 
         assertNotEquals(null, penAfterInitialize, "Desired Pen Status");
         assertNotEquals(null,directionAfterInitialize,  "Desired Direction");
@@ -31,13 +22,6 @@ class RobotTest {
     @Test
     void initializeFloorSetToDesiredValuesTest() {
         //This should check that all the necessary variables are as Desired.
-
-        String directionBeforeInitialize = r.direction;
-        int floorSizeBeforeInitialize = r.floorSize;
-        String penBeforeInitialize = r.pen;
-        int[] robotPositionBeforeInitialize = r.robotPosition;
-        int[][] floorBeforeInitialize = r.floor;
-
         int desiredFloorSize = 20;
         r.initializeFloor(desiredFloorSize);
 
@@ -45,7 +29,6 @@ class RobotTest {
         int floorSizeAfterInitialize = r.floorSize;
         String penAfterInitialize = r.pen;
         int[] robotPositionAfterInitialize = r.robotPosition;
-        int[][] floorAfterInitialize = r.floor;
 
         assertEquals("up", penAfterInitialize, "Desired Pen Status");
         assertEquals("north",directionAfterInitialize,  "Desired Direction");
@@ -168,11 +151,31 @@ class RobotTest {
 
     }
     @Test
-    void moveForwardTest() {
+    void testMoveForward() {
+        r.initializeFloor(10);
         r.moveForward(4);
+        assertEquals("Position: 0, 4 - Pen: up - Facing: north",r.showCurrentPositionStatus());
     }
 
-//    @Test
-//    void displayMatrixTest() {
-//    }
+    @Test
+    void testCommandFormat(){
+        int valid = r.splitArray("I 4");
+        int invalid = r.splitArray("I 4.5");
+        assertEquals(valid,4);
+        valid = r.splitArray("I09");
+        assertEquals(valid,9);
+        assertEquals(invalid,-1);
+        invalid = r.splitArray("I  4");
+        assertEquals(invalid,-1);
+
+    }
+    @Test
+    void testNoMovementPossible() {
+        r.initializeFloor(10);
+        String before = r.showCurrentPositionStatus();
+        r.turnLeft();
+        r.moveForward(4);
+        String after = r.showCurrentPositionStatus();
+        assertEquals(before.substring(0,14),after.substring(0,14));
+    }
 }
