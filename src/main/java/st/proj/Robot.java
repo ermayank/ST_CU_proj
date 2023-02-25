@@ -38,10 +38,6 @@ public class Robot {
         try{
             s = Integer.parseInt(commandArray);
         }
-        catch (ArrayIndexOutOfBoundsException e){
-            System.out.println("Please provide command in specified format displayed above");
-            return -1;
-        }
         catch(NumberFormatException e){
             System.out.println(("Enter a valid integer"));
             return -1;
@@ -62,8 +58,7 @@ public class Robot {
             try{
                 c = command.toLowerCase().charAt(0);
             }
-            catch (StringIndexOutOfBoundsException e)
-            {
+            catch (StringIndexOutOfBoundsException e){
                 System.out.println("Please provide command in specified format displayed above");
                 continue;
             }
