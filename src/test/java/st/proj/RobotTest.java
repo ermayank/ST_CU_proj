@@ -167,19 +167,30 @@ class RobotTest {
         assertFalse(r.moveForward(10));
         r.initializeFloor(10);
         r.moveForward(4);
-        assertEquals("Position: 0, 4 - Pen: up - Facing: north",r.showCurrentPositionStatus());
+        r.setPenDown();
+        assertEquals("Position: 0, 4 - Pen: down - Facing: north",r.showCurrentPositionStatus());
+        r.turnRight();
+        r.moveForward(2);
+        assertEquals("Position: 2, 4 - Pen: down - Facing: east",r.showCurrentPositionStatus());
+        r.turnRight();
+        r.moveForward(2);
+        assertEquals("Position: 2, 2 - Pen: down - Facing: south",r.showCurrentPositionStatus());
+        r.turnRight();
+        r.moveForward(2);
+        assertEquals("Position: 2, 2 - Pen: down - Facing: west",r.showCurrentPositionStatus());
     }
 
     @Test
     void testCommandFormat(){
         int valid = r.splitArray("I 4");
         int invalidInvalidInteger = r.splitArray("I 4.5");
-        int invalidCommandFormat = r.splitArray("I  4");
+        int invalidCommandFormat = r.splitArray("i 10 10");
         assertEquals(valid,4);
         valid = r.splitArray("I09");
         assertEquals(valid,9);
         assertEquals(invalidInvalidInteger,-1);
         assertEquals(invalidCommandFormat,-1);
+
 
     }
     @Test
@@ -190,12 +201,28 @@ class RobotTest {
         r.moveForward(4);
         String after = r.showCurrentPositionStatus();
         assertEquals(before.substring(0,14),after.substring(0,14));
+        r.turnLeft();
+        r.moveForward(4);
+        after = r.showCurrentPositionStatus();
+        assertEquals(before.substring(0,14),after.substring(0,14));
+        r.turnLeft();
+        r.moveForward(11);
+        after = r.showCurrentPositionStatus();
+        assertEquals(before.substring(0,14),after.substring(0,14));
+        r.turnLeft();
+        r.moveForward(11);
+        after = r.showCurrentPositionStatus();
+        assertEquals(before.substring(0,14),after.substring(0,14));
     }
 
     @Test
     void testCallingCommand(){
-        String input = "i 10\nm 4\nc \nr \nl \np \nu \nd \ns \nq";
+        String input = "i\ni 10\nm\nm4\nc \nr \nl \np \nu \nd \ns \nq";
         InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        r.runRobot();
+        input = "\n\nq";
+        in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         r.runRobot();
     }
