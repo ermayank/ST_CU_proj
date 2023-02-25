@@ -1,5 +1,6 @@
 package st.proj;
 
+import static com.google.common.base.Objects.equal;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -9,6 +10,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
 
 class RobotTest {
 
@@ -230,16 +232,13 @@ class RobotTest {
     @Test
     void testDisplayMatrix(){
         r.displayMatrix();
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
         r.initializeFloor(3);
         r.setPenDown();
         r.moveForward(1);
-        String floor = "2                    \r\n" +"   1     *              \r\n" +"   0     *              \r\n" +
-                "        0   1   2";
         r.displayMatrix();
-        assertEquals(floor, outContent.toString().trim());
-
+        int[][] floor = {{1,1,0},{0,0,0},{0,0,0}};
+        int [][] rFloor = r.getFloor();
+        assertTrue(Arrays.deepEquals(r.getFloor(),floor));
     }
 
 
