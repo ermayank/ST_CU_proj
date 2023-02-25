@@ -38,21 +38,21 @@ public class Robot {
         try{
             s = Integer.parseInt(commandArray);
         }
-        catch(NumberFormatException e){
-            System.out.println(("Enter a valid integer"));
-            return -1;
-        }
         catch (ArrayIndexOutOfBoundsException e){
             System.out.println("Please provide command in specified format displayed above");
+            return -1;
+        }
+        catch(NumberFormatException e){
+            System.out.println(("Enter a valid integer"));
             return -1;
         }
         return s;
     };
 
-    public  void runRobot(){
+    public void runRobot(){
         char c;
         int result;
-        System.out.println("Welcome to the Robot Program. The following Commands are Available : \n ");
+
         System.out.print("i x : Initialize the Program \np : Display the Floor \nu: Pen Up \nd: Pen Down \nr: Turn Right \nl : Turn Left \nm x : Move Forward in that Direction \nc: Print Current Position\n");
         Scanner sc = new Scanner(System.in);
         String command;
@@ -146,6 +146,8 @@ public class Robot {
         pen = "up";
         return pen;
     };
+
+
     //Method to Turn Right
     public String turnRight(){
         if(initialized==0){
@@ -172,7 +174,7 @@ public class Robot {
     public String turnLeft(){
         if(initialized==0){
             System.out.println("Please initialize the array first");
-            return "";
+            return "0";
         }
         switch (direction) {
             case "north":
@@ -196,7 +198,6 @@ public class Robot {
 //            System.out.print("");
             return "Please initialize the program first";
         }
-
         String position = "Position: " + robotPosition[0] + ", " + robotPosition[1];
         String penStatus = "Pen: " + pen;
         String face = "Facing: " + direction;
@@ -271,7 +272,6 @@ public class Robot {
             System.out.println("Please initialize the array first");
             return;
         }
-
         for (int i = floorSize-1; i>=0; i--){
             //Format the output, so we have equal spaces everywhere
             //Print the indices for y-axis

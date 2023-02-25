@@ -2,13 +2,18 @@ package st.proj;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.mockito.Mockito.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
 
 class RobotTest {
 
     Robot r = new Robot();
-
+    Robot mockRobot;
     @Test
     void initializeFloorNotNullOrZeroTest() {
         //This should check that all the necessary variables not java default after running function.
@@ -66,6 +71,7 @@ class RobotTest {
 
     @Test
     void turnRightTest() {
+        assertEquals(r.turnRight(),"0");
         r.initializeFloor(10);
         String dir = r.turnRight();
         assertEquals("east", dir, "Direction After Turning Right");
@@ -85,6 +91,7 @@ class RobotTest {
 
     @Test
     void turnLeftTest() {
+        assertEquals(r.turnLeft(),"0");
         r.initializeFloor(10);
         String dir = r.turnLeft();
         assertEquals("west", dir, "Direction After Turning Left");
@@ -157,6 +164,7 @@ class RobotTest {
     }
     @Test
     void testMoveForward() {
+        assertFalse(r.moveForward(10));
         r.initializeFloor(10);
         r.moveForward(4);
         assertEquals("Position: 0, 4 - Pen: up - Facing: north",r.showCurrentPositionStatus());
@@ -165,13 +173,13 @@ class RobotTest {
     @Test
     void testCommandFormat(){
         int valid = r.splitArray("I 4");
-        int invalid = r.splitArray("I 4.5");
+        int invalidInvalidInteger = r.splitArray("I 4.5");
+        int invalidCommandFormat = r.splitArray("I  4");
         assertEquals(valid,4);
         valid = r.splitArray("I09");
         assertEquals(valid,9);
-        assertEquals(invalid,-1);
-        invalid = r.splitArray("I  4");
-        assertEquals(invalid,-1);
+        assertEquals(invalidInvalidInteger,-1);
+        assertEquals(invalidCommandFormat,-1);
 
     }
     @Test
@@ -183,4 +191,29 @@ class RobotTest {
         String after = r.showCurrentPositionStatus();
         assertEquals(before.substring(0,14),after.substring(0,14));
     }
+
+    @Test
+    void testCallingCommand(){
+        String input = "i 10\nm 4\nc \nr \nl \np \nu \nd \ns \nq";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        r.runRobot();
+    }
+
+    @Test
+    void testDisplayMatrix(){
+        r.displayMatrix();
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        r.initializeFloor(3);
+        r.setPenDown();
+        r.moveForward(1);
+        String floor = "2                    \r\n" +"   1     *              \r\n" +"   0     *              \r\n" +
+                "        0   1   2";
+        r.displayMatrix();
+        assertEquals(floor, outContent.toString().trim());
+
+    }
+
+
 }
