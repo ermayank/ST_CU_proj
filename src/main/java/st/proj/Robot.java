@@ -1,4 +1,5 @@
-package org.software.testing;
+package st.proj;
+
 
 import java.util.Scanner;
 import java.util.SortedMap;
