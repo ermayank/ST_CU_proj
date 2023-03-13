@@ -18,9 +18,6 @@ public class Robot {
     public int[][] getFloor() {
         return floor;
     }
-    public void setFloor(int[][] floor) {
-        this.floor = floor;
-    }
     public int splitArray(String cmd){
         String commandArray="";
         if(cmd.length()>1)
