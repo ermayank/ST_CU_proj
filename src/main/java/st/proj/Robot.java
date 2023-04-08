@@ -1,6 +1,8 @@
 package st.proj;
 
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.SortedMap;
 
@@ -15,6 +17,7 @@ public class Robot {
     public Robot(){
 
     }
+    History h = new History();
     public int[][] getFloor() {
         return floor;
     }
@@ -41,79 +44,77 @@ public class Robot {
             s = Integer.parseInt(commandArray);
         }
         catch(NumberFormatException e){
-            System.out.println(("Enter a valid integer"));
+//            System.out.println(("Enter a valid integer"));
             return -1;
         }
         return s;
+
     };
 
-    public void runRobot(){
-        char c;
-        int result;
+    public void runRobot(String s){
+        // charter for command
+        char c = s.toLowerCase().charAt(0);
+        // int value for some commands
+        int result = splitArray(s);
 
-        System.out.print("i x : Initialize the Program \np : Display the Floor \nu: Pen Up \nd: Pen Down \nr: Turn Right \nl : Turn Left \nm x : Move Forward in that Direction \nc: Print Current Position\n");
-        Scanner sc = new Scanner(System.in);
-        String command;
-        do{
-            System.out.print("Enter command : ");
-            command = sc.nextLine();
-            try{
-                c = command.toLowerCase().charAt(0);
-            }
-            catch (StringIndexOutOfBoundsException e){
-                System.out.println("Please provide command in specified format displayed above");
-                continue;
-            }
             switch (c) {
                 //Initialise
                 case 'i':
-                    result = splitArray(command);
                     if (result != -1) {
-                        this.initializeFloor(splitArray(command));
+                        this.initializeFloor(result);
+                        h.addToHistory("i " + result);
                     }
                     break;
                 // Move eg m 4
                 case 'm':
-                    result = splitArray(command);
                     if (result != -1) {
                         this.moveForward(result);
+                        h.addToHistory("m " + result);
                     }
                     break;
                 //Print Current Position
                 case 'c':
                     System.out.println(this.showCurrentPositionStatus());
+                    h.addToHistory("c");
                     break;
                 //Turn Right
                 case 'r':
                     this.turnRight();
+                    h.addToHistory("r");
                     break;
                 //Turn Left
                 case 'l':
                     this.turnLeft();
+                    h.addToHistory("l");
                     break;
                 //Display Matrix
                 case 'p':
                     this.displayMatrix();
+                    h.addToHistory("p");
                     break;
                 // Pen Up command
                 case 'u':
                     this.setPenUp();
+                    h.addToHistory("u");
                     break;
                 // Pen Down command
                 case 'd':
                     this.setPenDown();
+                    h.addToHistory("d");
                     break;
                 case 'q':
                     System.out.println("Program ends");
+                    h.addToHistory("q");
+                    break;
+                    //history
+                case 'h':
+                    this.reRun();
                     break;
                 // Invalid command
                 default:
                     System.out.println("Enter valid command");
                     break;
             }
-
-        }
-        while(!command.toLowerCase().equals("q"));
     }
     //Method to Initialize
     public boolean initializeFloor(int size){
@@ -143,8 +144,6 @@ public class Robot {
         pen = "up";
         return pen;
     };
-
-
     //Method to Turn Right
     public String turnRight(){
         if(initialized==0){
@@ -293,6 +292,18 @@ public class Robot {
             System.out.print(String.format("%-2s%-2d","",i));
         }
         System.out.println();
+    }
+
+    public void reRun(){
+        System.out.print("Running all the commands entered by the user as a history : ");
+        System.out.println(Arrays.toString(h.getHistory()));
+        String[] moves = h.getHistory();
+        if(moves.length ==0){
+            return;
+        }
+        for (int i=0 ; i<=moves.length - 1; i++){
+            this.runRobot(moves[i]);
+        }
     }
 }
 
