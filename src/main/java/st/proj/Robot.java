@@ -305,5 +305,9 @@ public class Robot {
             this.runRobot(moves[i]);
         }
     }
+
+    public String getHistory(){
+        return Arrays.toString(h.getHistory());
+    }
 }
 

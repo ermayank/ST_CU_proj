@@ -18,10 +18,6 @@ public class History {
         movesHistory = arrayList.toArray(movesHistory);
     };
 
-    public void playHistory(){
-
-    }
-
 
 
 }
